@@ -1,0 +1,97 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f5f5f5;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Main App styles */
+.app {
+  max-width: 500px;
+  margin: 0 auto;
+  background: white;
+  min-height: 100vh;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+/* Telegram Web App specific styles */
+.telegram-webapp {
+  background: var(--tg-theme-bg-color, white);
+  color: var(--tg-theme-text-color, black);
+}
+
+.telegram-webapp .header {
+  background: var(--tg-theme-header-bg-color, #e4002b);
+  color: var(--tg-theme-header-text-color, white);
+}
+
+/* Utility classes */
+.text-center {
+  text-align: center;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Loading animation */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #e4002b;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive design */
+@media (max-width: 500px) {
+  .app {
+    box-shadow: none;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

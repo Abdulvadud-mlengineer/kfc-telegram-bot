@@ -1,0 +1,8 @@
+{
+  "short_name": "KFC Uzbekistan",
+  "name": "KFC Uzbekistan - Telegram Bot",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#e4002b",
+  "background_color": "#ffffff"
+}
