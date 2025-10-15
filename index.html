@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KFC Uzbekistan</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+        .header {
+            background: #e4002b;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .menu {
+            padding: 20px;
+        }
+        .product {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .add-btn {
+            background: #e4002b;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>KFC Uzbekistan</h1>
+        <p>Филиал: KFC Fayz</p>
+    </div>
+    
+    <div class="menu">
+        <h2>🍔 Бургеры</h2>
+        
+        <div class="product">
+            <h3>БИГ САНДЕРС Б</h3>
+            <p>36,000 сум</p>
+            <button class="add-btn" onclick="addToCart('БИГ САНДЕРС Б', 36000)">Добавить в корзину</button>
+        </div>
+        
+        <div class="product">
+            <h3>САНДЕРС Б</h3>
+            <p>30,000 сум</p>
+            <button class="add-btn" onclick="addToCart('САНДЕРС Б', 30000)">Добавить в корзину</button>
+        </div>
+
+        <h2>🛒 Корзина</h2>
+        <div id="cart"></div>
+        <button onclick="checkout()" style="background:green;color:white;padding:15px;border:none;width:100%;margin-top:20px;">Оформить заказ</button>
+    </div>
+
+    <script>
+        let cart = [];
+        
+        function addToCart(name, price) {
+            cart.push({name, price});
+            updateCart();
+            alert('Добавлено в корзину: ' + name);
+        }
+        
+        function updateCart() {
+            let cartHtml = '';
+            let total = 0;
+            
+            cart.forEach(item => {
+                cartHtml += `<p>${item.name} - ${item.price} сум</p>`;
+                total += item.price;
+            });
+            
+            cartHtml += `<h3>Итого: ${total} сум</h3>`;
+            document.getElementById('cart').innerHTML = cartHtml;
+        }
+        
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Корзина пуста!');
+                return;
+            }
+            
+            let total = cart.reduce((sum, item) => sum + item.price, 0);
+            alert(`Заказ оформлен! Итого: ${total} сум\n\nМы свяжемся с вами в Telegram!`);
+            cart = [];
+            updateCart();
+            
+            // Закрываем Web App если в Telegram
+            if (window.Telegram && window.Telegram.WebApp) {
+                setTimeout(() => {
+                    window.Telegram.WebApp.close();
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>
